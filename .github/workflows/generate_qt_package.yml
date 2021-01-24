@@ -1,0 +1,26 @@
+name: Qt-package generator
+
+on: [push]
+
+jobs:
+  build:
+    name: GenerateQt
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+          architecture: 'x64'
+          bintrayApiKey: ${{ secrets.BINTRAY_API_KEY }}
+      - run: |
+        pip3 install conan
+        conan remote add bincrafter https://api.bintray.com/conan/bincrafters/public-conan
+        conan remote add privateQt https://api.bintray.com/conan/kseinitzer/qt
+
+        conan user -p bintrayApiKey -r privateQt kseinitzer
+
+        conan install qt/5.15.2@bincrafters/stable -o qtdeclarative=True -o qttools=True -o qtsvg=True -r bintray --build=qt
+        conan upload qt/5.15.2@bincrafters/stable -r privateQt
