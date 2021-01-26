@@ -31,7 +31,7 @@ jobs:
 
       - name: Build Package
         run: |
-          conan install qt/5.15.2@bincrafters/stable -o qtdeclarative=True -o qttools=True -o qtsvg=True -r bincrafter --build=qt
+          conan install qt/5.15.2@bincrafters/stable -o qtdeclarative=True -o qttools=True -o qtsvg=True --build=qt
 
       - name: Upload Package
         run: |
