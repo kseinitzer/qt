@@ -35,4 +35,4 @@ jobs:
 
       - name: Upload Package
         run: |
-          conan upload qt/5.15.2@bincrafters/stable -r privateQt
+          conan upload qt/5.15.2@bincrafters/stable -r privateQt --all
