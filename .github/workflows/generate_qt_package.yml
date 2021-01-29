@@ -32,7 +32,7 @@ jobs:
       - name: Build Package
         run: |
           conan install qt/5.15.2@bincrafters/stable -o qtdeclarative=True -o qttools=True -o qtsvg=True --build=qt
-          conan copy qt/5.15.2@bincrafters/stable kseinitzer/stable
+          conan copy --all qt/5.15.2@bincrafters/stable kseinitzer/stable
 
       - name: Upload Package
         run: |
